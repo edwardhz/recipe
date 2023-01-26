@@ -1,0 +1,12 @@
+{
+    "presets":[
+        "@babel/preset-env",//compila todos los ecs
+        ["@babel/preset-react",{
+            "runtime": "automatic"
+         }
+        ]
+    ],
+    "plugins":[
+        "@babel/plugin-transform-runtime"
+    ]
+}
