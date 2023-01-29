@@ -2,7 +2,8 @@ import {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {Splide, SplideSlide} from '@splidejs/react-splide'
 import '@splidejs/react-splide/css';
-import { json } from 'react-router-dom';
+import {Link} from 'react-router-dom'
+
 
 const MostPopular = () => {
 
@@ -43,10 +44,12 @@ const MostPopular = () => {
         }}> 
             {popular.map((recipe)=>(
               <SplideSlide key={recipe.id}>
-                <Card >
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title} />
-                  <Gradient/>
+                <Card>
+                  <Link to={'recipe/'+recipe.id}>
+                    <p>{recipe.title}</p>
+                    <img src={recipe.image} alt={recipe.title} />
+                    <Gradient/>
+                  </Link>
                 </Card>
               </SplideSlide>
             ))}
@@ -63,7 +66,7 @@ const Wrapper = styled.div`
   text-align: center;
 `
 const Card = styled.div`
-  min-height: 25rem;
+  min-height: 15rem;
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
