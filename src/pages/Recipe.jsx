@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
+import Header from '../containers/Header'
 
 const Recipe = () => {
   const params = useParams();
@@ -23,25 +24,34 @@ const Recipe = () => {
 
 
   return (
-    <Wrapper>
-      <div>
-        <h2>{details.title}</h2>
-        <img src={details.image} alt="" />
-      </div>
-      <Info>
-        <Button className={activeBtn === 'instructions'?'active':''} onClick={()=> setActiveBtn('instructions')}>Instructions</Button>
-        <Button className={activeBtn === 'ingredients'?'active':''} onClick={()=> setActiveBtn('ingredients')}>Ingredients</Button>
+    <>
+    <Header/>
+      <Wrapper>
         <div>
-          <h3>{details.instructions}</h3>
-            <ul>
-              
-              {details.extendedIngredients?.map((item)=>(
-                <li key={item.id}>{item.original}</li>
-              ))}
-            </ul> 
+          <h2>{details.title}</h2>
+          <img src={details.image} alt="" />
         </div>
-      </Info>   
-    </Wrapper>
+        <Info>
+          <div>
+          <Button className={activeBtn === 'instructions'?'active':''} onClick={()=> setActiveBtn('instructions')}>Instructions</Button>
+          <Button className={activeBtn === 'ingredients'?'active':''} onClick={()=> setActiveBtn('ingredients')}>Ingredients</Button>
+          </div>
+          <div>
+            {activeBtn === 'instructions' && (
+              <h3 dangerouslySetInnerHTML={{__html: details.instructions}}></h3>
+            )}
+            {activeBtn === 'ingredients' &&(
+              <ul>
+                
+                {details.extendedIngredients?.map((item)=>(
+                  <li key={item.id}>{item.original}</li>
+                ))}
+              </ul>
+            )}   
+          </div>
+        </Info>   
+      </Wrapper>
+    </>
   )
 }
 
@@ -49,7 +59,6 @@ const Wrapper = styled.div`
   margin: 5rem;
   margin-bottom: 5rem;
   display: flex;
-  grid-template-rows: 1fr;
   .active{
     background: linear-gradient(34deg, #494949, #313131);
     color: white;
@@ -64,19 +73,43 @@ const Wrapper = styled.div`
   ul{
     margin-top: 2rem;
   }
-  
-  
+  img{
+    border-radius: 5%;
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    margin:0 auto;
+    div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  }
 `
 const Button = styled.button`
-  padding: 1rem 2rem;
+  margin-bottom: 1px;
+  width: 150px;
+  height: 50px;
   color: #313131;
   background: white;
-  
   font-weight: 600;
   cursor: pointer;
+  @media (max-width:1000px) {
+    margin-top: 1rem;
+  }
 `
 const Info = styled.div`
   margin-left: 5rem;
+  @media (max-width: 1000px) {
+    margin: 0 auto;
+    align-items: center;
+    div:first-child{
+    flex-direction: row;
+  }
+  }
+  
 `
 
 export default Recipe

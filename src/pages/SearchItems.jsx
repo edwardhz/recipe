@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import Category from 'components/Category'
-import Search from 'components/Search'
+import Header from '../containers/Header'
 import {useParams,Link} from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -24,20 +23,18 @@ const SearchItems = () => {
   }
   return (
   <>
-    <Search/>
-    <Category/>
-
+    <Header/>
     <Grid>
       {
-        
-      searchedItems.map((item)=>(
-        <Card key={item.id}>
-          <Link to={'/recipe/'+item.id}>
-            <img src={item.image} alt={item.title} />
-            <h4>{item.title}</h4>
-          </Link>
-        </Card>
-      ))
+        (searchedItems.length > 0) ? searchedItems.map((item)=>(
+          <Card key={item.id}>
+            <Link to={'/recipe/'+item.id}>
+              <img src={item.image} alt={item.title} />
+              <h4>{item.title}</h4>
+            </Link>
+          </Card>
+        )) : <h3>There're no recipes :c, try another set of words</h3>
+      
         
       }
       
@@ -51,6 +48,7 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
     gap: 32px;
+    text-align: center;
 `
 const Card = styled.div`
     img{

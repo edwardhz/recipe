@@ -1,9 +1,9 @@
 import React,{useState, useEffect} from 'react'
-import Category from '../components/Category'
+import Header from '../containers/Header'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 import {Link, useParams} from 'react-router-dom'
-import Search from 'components/Search'
+
 
 
 const Cuisine = () => {
@@ -26,10 +26,14 @@ const Cuisine = () => {
   },[params.type])
   return (
     <>
-    <Search/>
-    <Category/>
-    <Grid>
-      {cuisine.map((item)=>(
+    <Header/>
+    <Grid
+    animate={{opacity:1}}
+    initial={{opacity:0}}
+    exit={{opacity:0}}
+    transition={{duration: 0.5}}
+    >
+      {cuisine?.map((item)=>(
         <Card key={item.id}>
           <Link to={'/recipe/'+item.id}>
             <img src={item.image} alt={item.title} />
@@ -43,7 +47,7 @@ const Cuisine = () => {
   )
 }
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
     gap: 32px;
