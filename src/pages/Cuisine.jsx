@@ -48,15 +48,16 @@ const Cuisine = () => {
 }
 
 const Grid = styled(motion.div)`
+    margin: auto 0;
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
     gap: 32px;
 `
 const Card = styled.div`
+    
     img{
         width: 100%;
         border-radius: 32px;
-        
     }
     a{
       text-decoration: none;

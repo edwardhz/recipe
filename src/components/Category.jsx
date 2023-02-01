@@ -31,9 +31,12 @@ const List = styled.div`
     justify-content: center;
     margin: 32px 0;
     gap: 35px;
-
+    @media (max-width:425px) {
+        gap: 3px;
+     }
 `
 const SLink = styled(NavLink)`
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,13 +44,13 @@ const SLink = styled(NavLink)`
     border-radius: 50%;
     text-decoration: none;
     background: linear-gradient(35deg, #494949, #313131);
-    width: 6rem;
-    height: 6rem;
+    min-width: 6rem;
+    min-height: 6rem;
     cursor: pointer;
     transform: scale(0.8);
     h4{
         color: white;
-        font: 0.8rem;
+        font-size: 0.8rem;
     }
     svg{
         color: white;
@@ -60,6 +63,17 @@ const SLink = styled(NavLink)`
         }
         h4{
             color: white;
+        }
+    }
+
+    @media (max-width:425px) {
+        min-width: 5rem;
+        min-height: 5rem;
+        svg{
+            font-size: 3rem;
+        }
+        h4{
+            display: none;
         }
     }
 `

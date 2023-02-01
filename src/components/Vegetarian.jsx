@@ -40,7 +40,12 @@ const Vegetarian = () => {
             arrows:true,
             pagination:false,
             drag:'free',
-            gap:'2.5rem'
+            gap:'2.5rem',
+            breakpoints:{
+              640: {
+                perPage: 1,
+              },
+            }
           }}> 
               {italian.map((recipe)=>(
                 <SplideSlide key={recipe.id}>
@@ -65,7 +70,7 @@ const Wrapper = styled.div`
   text-align: center;
 `
 const Card = styled.div`
-  min-height: 20rem;
+  height: 20rem;
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
@@ -95,6 +100,10 @@ const Card = styled.div`
     align-items: center;
     
   }
+
+
+
+
 `
 const Gradient = styled.div`
   z-index: 3;

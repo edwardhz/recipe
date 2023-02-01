@@ -40,7 +40,12 @@ const MostPopular = () => {
           arrows:false,
           pagination:false,
           drag:'free',
-          gap:'2.5rem'
+          gap:'2.5rem',
+          breakpoints:{
+            640: {
+              perPage: 2,
+            },
+          }
         }}> 
             {popular.map((recipe)=>(
               <SplideSlide key={recipe.id}>
@@ -94,8 +99,8 @@ const Card = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    
   }
+  
 `
 const Gradient = styled.div`
   z-index: 3;

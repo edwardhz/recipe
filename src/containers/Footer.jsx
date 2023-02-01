@@ -17,6 +17,9 @@ const FooterDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    position:absolute;
+    opacity: 50%;
+    right: 0;
 `
 
 
